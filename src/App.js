@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
@@ -39,15 +39,16 @@ function getScreenOptions({route}) {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Provider store={store}>
+    <Provider store={store}>
+      <StatusBar backgroundColor={theme.primary} barStyle="light-content" />
+      <NavigationContainer>
         <Tab.Navigator
           screenOptions={getScreenOptions}
           tabBarOptions={tabBarOptions}>
           <Tab.Screen name="Home" component={SearchScreen} />
           <Tab.Screen name="Favourites" component={FavouritesScreen} />
         </Tab.Navigator>
-      </Provider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   );
 }
