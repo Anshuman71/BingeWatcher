@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {
   screenWidth,
   screenHeight,
@@ -50,17 +50,18 @@ function MovieCard({item, onLike, onDislike}) {
       <Text style={styles.title} numberOfLines={2}>
         {movie.Title}, {movie.Year}
       </Text>
-
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.heartButton}
-        onPress={onPress}>
-        <Image
-          resizeMode="contain"
-          style={styles.heartIcon}
-          source={item.isLiked ? heart_filled : heart_outline}
-        />
-      </TouchableOpacity>
+      <LinearGradient colors={['#000000aa', '#00000066', '#00000000']} style={styles.gradient}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.heartButton}
+          onPress={onPress}>
+          <Image
+            resizeMode="contain"
+            style={styles.heartIcon}
+            source={item.isLiked ? heart_filled : heart_outline}
+          />
+        </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 }
@@ -84,11 +85,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   heartButton: {
+    margin: 5,
     width: 50,
-    position: 'absolute',
-    top: 5,
-    right: 10,
     height: 50,
+  },
+  gradient: {
+    width: '100%',
+    flexDirection: 'row-reverse',
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
   poster: {width: '100%', height: '75%', marginBottom: 5},
   heartIcon: {width: 24, alignSelf: 'flex-end', height: 24},
